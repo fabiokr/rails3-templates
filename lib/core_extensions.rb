@@ -12,6 +12,10 @@ module Rails
         git :commit => "-m \"#{msg}\""             
       end
 
+      def recipe(recipe, group = '')
+        File.join File.dirname(__FILE__), 'recipes', group, "#{recipe}.rb" 
+      end
+
     end
   end
 end
