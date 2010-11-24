@@ -1,26 +1,33 @@
 module Rails
   module Generators
     module Actions
-    
-      def set_option(option, value)
-        @template_options = {} if @template_options.nil?
-        @template_options[option.to_sym] = value
-      end
 
-      # Delays a generator proc to be executed after gems installation
-      def after_gems(proc)
-        @after_gems = [] if @after_gems.nil?
-        @after_gems << proc
+      attr_accessor :after_gems, :template_options 
+
+      # Adds a # before the found content
+      def comment(path, content)
+        gsub_file path, content, "##{content}"
       end
 
       # Executes all procs 
       def execute_after_gems
         @after_gems.each {|proc| proc.call } 
+      end      
+
+      # Initializes the parameters
+      def initialize_parameters
+        @after_gems = []
+        @template_options = {}
       end
 
-      # Initializer the version control repository
-      def repo_init
-        git :init
+      # Asks if a recipe should be applied and stores the recipe option
+      def recipe?(recipe)
+        template_options[recipe.to_sym] = yes?(("Install #{recipe.to_s}?"))
+      end
+
+      # Retrieves the file path to a given recipe
+      def recipe_path(recipe, group = '')
+        File.join File.dirname(__FILE__), 'recipes', group.to_s, "#{recipe.to_s}.rb" 
       end
 
       # Commit all current changes on version control
@@ -30,14 +37,9 @@ module Rails
         git :commit => "-m \"#{msg}\""             
       end
 
-      # Retrieves the file path to a given recipe
-      def recipe(recipe, group = '')
-        File.join File.dirname(__FILE__), 'recipes', group, "#{recipe}.rb" 
-      end
-
-      # Adds a # before the found content
-      def comment(path, content)
-        gsub_file path, content, "##{content}"
+      # Initializer the version control repository
+      def repo_init
+        git :init
       end
 
     end
