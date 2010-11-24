@@ -2,7 +2,7 @@ require File.join(File.dirname(__FILE__), 'lib', 'core_extensions.rb')
 
 initialize_parameters
 
-recipes = {:models => [:mongoid]}
+recipes = {:general => [:rails3_generators], :models => [:mongoid], :views => [:haml]}
 
 apply recipe_path('default')
 
