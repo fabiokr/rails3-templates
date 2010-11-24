@@ -42,6 +42,14 @@ module Rails
         git :init
       end
 
+      def template_content(template)
+        File.read template_path(template)
+      end
+
+      def template_path(template)
+        File.join File.dirname(__FILE__), 'templates', template 
+      end
+
     end
   end
 end
