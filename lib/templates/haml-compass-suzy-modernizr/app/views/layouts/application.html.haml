@@ -1,0 +1,34 @@
+!!!
+%html
+  %head
+    %meta{:charset => "utf-8"}
+    %title My new website
+    = csrf_meta_tag
+
+    //Stylesheets
+    = stylesheet_link_tag 'compiled/screen', :media => 'all'
+    = stylesheet_link_tag 'compiled/print', :media => 'print'
+    /[if IE]
+      = stylesheet_link_tag 'compiled/ie', :media => 'screen, projection' 
+
+    //Javascript
+    = javascript_include_tag 'lib/modernizr'
+  %body
+    #container
+      %h1 Header
+      
+      %nav
+        %ul
+          %li Test 1
+          %li Test 2
+          %li Test 3
+      
+      %div{:role => 'main'}
+        %article
+          = yield
+        %aside
+          %h2 Side notes
+          %p Test side note
+
+      %footer
+        %p Test Footer
