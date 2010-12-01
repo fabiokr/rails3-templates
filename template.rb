@@ -4,6 +4,7 @@ initialize_parameters
 
 apply recipe_path('default')
 apply recipe_path('rails3_generators', 'general')
+apply recipe_path('rspec', 'tests')
 apply recipe_path('haml-compass-suzy-modernizr', 'views')
 
 optional_recipes = {:models => [:mongoid]}
