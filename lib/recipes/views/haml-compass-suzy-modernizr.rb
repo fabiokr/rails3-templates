@@ -6,7 +6,7 @@ after_gems << lambda do
   run 'compass init rails . -r susy --using susy -x sass --force'
   remove_file 'app/stylesheets/screen.scss'
   create_file 'app/stylesheets/screen.scss', template_content('haml-compass-suzy-modernizr/app/stylesheets/screen.scss')
-  append_file '.gitignore', 'public/stylesheets/compiled'
+  append_file '.gitignore', "\npublic/stylesheets/compiled"
   repo_commit 'Added Suzy'
 
   #Modernizr
@@ -15,6 +15,7 @@ after_gems << lambda do
 
   #Haml template
   remove_file 'app/views/layouts/application.html.erb'
-  create_file 'app/views/layouts/application.html.haml', template_content('haml-compass-suzy-modernizr/app/views/layouts/application.html.haml')  
-  repo_commit 'Added Haml layout' 
+  create_file 'app/views/layouts/application.html.haml', template_content('haml-compass-suzy-modernizr/app/views/layouts/application.html.haml')
+  repo_commit 'Added Haml layout'
 end
+
