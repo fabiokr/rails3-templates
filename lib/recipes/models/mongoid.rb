@@ -10,7 +10,7 @@ after_gems << lambda do
 
   inject_into_file "spec/spec_helper.rb", "require 'remarkable/mongoid'\n", :after => "require 'remarkable/active_record'\n"
 
-  inject_into_file "spec/spec_helper.rb", "config.before :each do\nMongoid.master.collections.select {|c| c.name !~ /system/ }.each(&:drop)\nend\n", :after => "#config.use_transactional_fixtures = true\n"
+  inject_into_file "spec/spec_helper.rb", "\n  config.before :each do\n    Mongoid.master.collections.select {|c| c.name !~ /system/ }.each(&:drop)\n  end\n", :after => "config.use_transactional_fixtures = true\n"
 
   comment 'spec/spec_helper.rb', "require 'remarkable/active_record'"
   comment 'spec/spec_helper.rb', 'config.use_transactional_fixtures'
