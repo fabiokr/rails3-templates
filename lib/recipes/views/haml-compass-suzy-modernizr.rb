@@ -16,6 +16,6 @@ after_gems << lambda do
   #Haml template
   remove_file 'app/views/layouts/application.html.erb'
   create_file 'app/views/layouts/application.html.haml', template_content('haml-compass-suzy-modernizr/app/views/layouts/application.html.haml')
+  create_file 'app/views/layouts/_flash.html.haml', template_content('haml-compass-suzy-modernizr/app/views/layouts/_flash.html.haml')
   repo_commit 'Added Haml layout'
 end
-

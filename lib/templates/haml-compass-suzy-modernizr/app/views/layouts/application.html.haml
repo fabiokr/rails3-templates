@@ -9,22 +9,23 @@
     = stylesheet_link_tag 'compiled/screen', :media => 'all'
     = stylesheet_link_tag 'compiled/print', :media => 'print'
     /[if IE]
-      = stylesheet_link_tag 'compiled/ie', :media => 'screen, projection' 
+      = stylesheet_link_tag 'compiled/ie', :media => 'screen, projection'
 
     //Javascript
     = javascript_include_tag 'lib/modernizr'
   %body
     #container
       %h1 Header
-      
+
       %nav
         %ul
           %li Test 1
           %li Test 2
           %li Test 3
-      
+
       %div{:role => 'main'}
         %article
+          = render 'layouts/flash'
           = yield
         %aside
           %h2 Side notes
