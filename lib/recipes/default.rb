@@ -2,9 +2,9 @@ repo_init
 repo_commit 'Rails app created'
 
 # Files to be removed
-[ 'README', 
-  'public/index.html', 
-  'public/robots.txt', 
+[ 'README',
+  'public/index.html',
+  'public/robots.txt',
   'public/images/rails.png'
 ].each do |file|
   remove_file file
@@ -20,6 +20,6 @@ railties = %w(active_record action_controller action_mailer active_resource).map
 gsub_file 'config/application.rb', /require 'rails\/all'/, railties
 
 # Additions to .gitignore
-append_file '.gitignore', '*.swp'
+append_file '.gitignore', "*.swp\n"
 
 repo_commit 'Initial file changes'
